@@ -1,0 +1,57 @@
+.full-width {
+  width: 100%;
+}
+
+.with-margin {
+  margin: 10px;
+}
+
+.ml {
+  margin-left: 5px;
+}
+.med {
+  width: 350px;
+  max-width: 350px;
+  text-overflow: ellipsis;
+  font-weight: bold;
+}
+
+.pull-right {
+  margin-left: auto;
+}
+
+.mat-row:nth-child(even) {
+  background-color: #1b1c20;
+}
+
+.mat-row {
+  background-color: black;
+}
+
+.mat-header-row {
+  background-color: #1b1c20;
+}
+
+.mat-toolbar {
+  font-family: "Ibm Plex Mono";
+}
+
+.mat-header-cell {
+  color: #e8edf8;
+  font-family: "Ibm Plex Mono";
+  font-size: large;
+}
+
+.black {
+  background-color: black;
+}
+
+.white-icon {
+  color: white;
+}
+
+.mat-cell {
+  font-family: "Ibm Plex Mono";
+  font-size: large;
+  color: #e8edf8;
+}
