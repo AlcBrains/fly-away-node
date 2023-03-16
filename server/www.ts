@@ -44,7 +44,7 @@ app.use((err: any, req: express.Request, res: express.Response, next: express.Ne
 });
 
 // Get port from environment and store in Express.
-const port = normalizePort(process.env.PORT || 4000);
+const port = 6969
 app.set('port', port);
 
 
