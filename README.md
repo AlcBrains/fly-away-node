@@ -8,6 +8,7 @@ Recommend using node 14. Other versions aren't compatible with node-sass include
 
 `npm ci`
 `npm run globalnpms pm2`
+
 `npm run build:all`
 `npm run server:nonstop`
 
