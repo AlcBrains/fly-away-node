@@ -157,11 +157,6 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private transformFieldInSeriesOfSpans(field) {
-    let final = "";
-    for (var i = 0; i < field.length; i++) {
-      final += "<span>" + field[i] + "</span>";
-    }
-    field = final;
     return field;
   }
 }
