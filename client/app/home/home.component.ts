@@ -1,22 +1,7 @@
-import {
-  AfterViewInit,
-  Component,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-  ViewEncapsulation,
-} from "@angular/core";
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from "@angular/core";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatTableDataSource } from "@angular/material/table";
-import {
-  map,
-  mergeMap,
-  Observable,
-  shareReplay,
-  Subscription,
-  take,
-  timer,
-} from "rxjs";
+import { map, mergeMap, Observable, shareReplay, Subscription, take, timer } from "rxjs";
 import { BackendService } from "../core/services/backend/backend.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
 
@@ -36,25 +21,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   private airlineLogos: any[];
   private _time$: Observable<Date>;
   private subscription = new Subscription();
-  public departuresDisplayedColumns: string[] = [
-    "airline",
-    "fnr",
-    "destination",
-    "sched",
-    "schalter",
-    "terminal",
-    "gate",
-    "status",
-  ];
-  public arrivalsDisplayedColumns: string[] = [
-    "airline",
-    "fnr",
-    "codeshare",
-    "apname",
-    "sched",
-    "terminal",
-    "status",
-  ];
+  public departuresDisplayedColumns: string[] = ["airline", "fnr", "destination", "sched", "schalter", "terminal", "gate", "status"];
+  public arrivalsDisplayedColumns: string[] = ["airline", "fnr", "codeshare", "apname", "sched", "terminal", "status"];
 
   constructor(
     private backendService: BackendService,
@@ -69,7 +37,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
       this.backendService
         .getAirlineLogos()
         .pipe(take(1))
-        .subscribe((res) => {
+        .subscribe((res: any) => {
           if (res == null || res == "undefined") {
             this.airlineLogos = [""];
           }
@@ -80,11 +48,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.subscription.add(
       timer(0, 5 * 300000)
         .pipe(mergeMap(() => this.backendService.getDepartures()))
-        .subscribe((data) => {
+        .subscribe((data: any) => {
           if (data == null) {
-            this._snackBar.open(
-              "Could not establish connection, attempting to reconnect"
-            );
+            this._snackBar.open("Could not establish connection, attempting to reconnect");
+            return;
           }
           this.departures.data = this.transformFlightInfo(JSON.parse(data));
         })
@@ -93,18 +60,17 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.subscription.add(
       timer(0, 5 * 300000)
         .pipe(mergeMap(() => this.backendService.getArrivals()))
-        .subscribe((data) => {
+        .subscribe((data: any) => {
           if (data == null) {
-            this._snackBar.open(
-              "Could not establish connection, attempting to reconnect"
-            );
+            this._snackBar.open("Could not establish connection, attempting to reconnect");
+            return;
           }
           this.arrivals.data = this.transformFlightInfo(JSON.parse(data));
         })
     );
 
     this._time$ = timer(0, 1000).pipe(
-      map((tick) => new Date()),
+      map(() => new Date()),
       shareReplay(1)
     );
   }
@@ -130,9 +96,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     paginator.hasNextPage() ? paginator.nextPage() : paginator.firstPage();
   }
 
-  private transformFlightInfo(tmp) {
+  private transformFlightInfo(rawFlightInfo) {
     // remove html directives
-    tmp.forEach((element) => {
+    rawFlightInfo.forEach((element: any) => {
       if (element.status.includes("&nbsp;")) {
         element.status = "";
       }
@@ -143,20 +109,11 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
           break;
         }
       }
-      Object.entries(element).forEach(([key, value]) => {
-        if (key != "image" && key != "sched" && key != "cs") {
-          element[key] = this.transformFieldInSeriesOfSpans(value);
-        }
-      });
     });
     // pad array with empty data so as to have fixed length table
-    while (tmp.length % this.PAGE_SIZE != 0) {
-      tmp.push({ image: "assets/icons/airlines/blank.png" });
+    while (rawFlightInfo.length % this.PAGE_SIZE != 0) {
+      rawFlightInfo.push({ image: "assets/icons/airlines/blank.png" });
     }
-    return tmp;
-  }
-
-  private transformFieldInSeriesOfSpans(field) {
-    return field;
+    return rawFlightInfo;
   }
 }

@@ -68,13 +68,8 @@
           <th mat-header-cell class="med" *matHeaderCellDef mat-sort-header>
             <b>Scheduled</b>
           </th>
-          <td
-            mat-cell
-            class="med"
-            *matCellDef="let element"
-            data-label="sched"
-          >
-            {{ element.sched | date : "HH:mm" }}
+          <td mat-cell class="med" *matCellDef="let element" data-label="sched">
+            {{ element.sched ? (element.sched | date : "HH:mm") : "" }}
           </td>
           <td mat-footer-cell *matFooterCellDef></td>
         </ng-container>
@@ -89,8 +84,7 @@
             *matCellDef="let element"
             data-label="schalter"
             [innerHTML]="element.schalter"
-          >
-          </td>
+          ></td>
           <td mat-footer-cell *matFooterCellDef></td>
         </ng-container>
 
@@ -104,8 +98,7 @@
             *matCellDef="let element"
             data-label="terminal"
             [innerHTML]="element.terminal"
-          >
-          </td>
+          ></td>
           <td mat-footer-cell *matFooterCellDef></td>
         </ng-container>
 
@@ -119,8 +112,7 @@
             *matCellDef="let element"
             data-label="gate"
             [innerHTML]="element.gate"
-          >
-          </td>
+          ></td>
           <td mat-footer-cell *matFooterCellDef></td>
         </ng-container>
 
@@ -134,8 +126,7 @@
             *matCellDef="let element"
             data-label="status"
             [innerHTML]="element.status"
-          >
-          </td>
+          ></td>
           <td mat-footer-cell *matFooterCellDef></td>
         </ng-container>
 
@@ -236,13 +227,8 @@
           <th mat-header-cell class="med" *matHeaderCellDef mat-sort-header>
             <b>Scheduled</b>
           </th>
-          <td
-            mat-cell
-            class="med"
-            *matCellDef="let element"
-            data-label="sched"
-          >
-            {{ element.sched | date : "HH:mm" }}
+          <td mat-cell class="med" *matCellDef="let element" data-label="sched">
+            {{ element.sched ? (element.sched | date : "HH:mm") : "" }}
           </td>
           <td mat-footer-cell *matFooterCellDef></td>
         </ng-container>
@@ -257,8 +243,7 @@
             *matCellDef="let element"
             data-label="terminal"
             [innerHTML]="element.terminal"
-          >
-          </td>
+          ></td>
           <td mat-footer-cell *matFooterCellDef></td>
         </ng-container>
 
@@ -272,8 +257,7 @@
             *matCellDef="let element"
             data-label="status"
             [innerHTML]="element.status"
-          >
-          </td>
+          ></td>
           <td mat-footer-cell *matFooterCellDef></td>
         </ng-container>
 

@@ -4,7 +4,7 @@ import * as express from 'express';
 import * as path from 'path';
 import * as http from 'http';
 
-import router = require('./routes/exampleRoute');
+import router = require('./routes/airlineRoute');
 
 const app: express.Application = express();
 
