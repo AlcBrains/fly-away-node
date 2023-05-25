@@ -1,5 +1,4 @@
 <div class="container">
-  <div style="display: flex"></div>
   <div #departuresArrivalsTable style="display: flex">
     <div style="margin: 5px">
       <p>
@@ -191,21 +190,6 @@
             data-label="fnr"
             [innerHTML]="element.fnr"
           ></td>
-          <td mat-footer-cell *matFooterCellDef></td>
-        </ng-container>
-
-        <ng-container matColumnDef="codeshare">
-          <th mat-header-cell class="med" *matHeaderCellDef mat-sort-header>
-            <b>Codeshare</b>
-          </th>
-          <td
-            mat-cell
-            class="med"
-            *matCellDef="let element"
-            data-label="codeshare"
-          >
-            {{ element.cs != null ? element.cs.join(", ") : "" }}
-          </td>
           <td mat-footer-cell *matFooterCellDef></td>
         </ng-container>
 

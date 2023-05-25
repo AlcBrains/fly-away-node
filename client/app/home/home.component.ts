@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   private _time$: Observable<Date>;
   private subscription = new Subscription();
   public departuresDisplayedColumns: string[] = ["airline", "fnr", "destination", "sched", "schalter", "terminal", "gate", "status"];
-  public arrivalsDisplayedColumns: string[] = ["airline", "fnr", "codeshare", "apname", "sched", "terminal", "status"];
+  public arrivalsDisplayedColumns: string[] = ["airline", "fnr", "apname", "sched", "terminal", "status"];
 
   constructor(
     private backendService: BackendService,
