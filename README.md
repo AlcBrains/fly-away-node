@@ -4,7 +4,7 @@ Node version of fly-away electron app.
 
 ## Setup
 Recommend using node 14. Other versions aren't compatible with node-sass included in this repo.
-
+Before running in guns blazing, ensure you have a valid ssh keypair associated with a github account, otherwise npm ci will fail while trying to do a git ls remote 
 
 `npm ci`
 `npm run globalnpms pm2`
